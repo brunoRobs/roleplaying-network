@@ -9,7 +9,14 @@ const routes = [
       {
         path: 'home',
         component: Home,
-        name: 'Home'
+        name: 'Home',
+        children: [
+          {
+            path: 'campaigns',
+            components: { content: () => import('@/components/campaigns/Campaigns.vue') },
+            name: 'Campaigns'
+          }
+        ]
       }
     ]
   }
