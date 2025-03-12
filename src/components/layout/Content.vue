@@ -1,7 +1,17 @@
-<template></template>
+<template>
+	<div id="content">
+		<RouterView name="content" />
+	</div>
+</template>
 
-<script>
-  export default {}
-</script>
+<style>
+	#content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-<style scoped></style>
+		width: 100%;
+		height: 100vh;
+		background-color: rgb(147, 147, 147);
+	}
+</style>
