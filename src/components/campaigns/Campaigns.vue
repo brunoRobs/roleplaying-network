@@ -23,7 +23,7 @@
       return {
         target: undefined,
         campaignId: undefined,
-        campaigns: []
+        campaigns: undefined
       }
     },
     computed: {
@@ -43,7 +43,7 @@
       this.campaignId = this.campaigns[0].id;
     },
     mounted() {
-      const array = Array.from(document.getElementsByClassName('list')[0].children)
+      const array = Array.from(document.getElementById('list').children)
       this.target = array.find(item => item.classList.contains('selected'));
     }
   }
