@@ -15,6 +15,11 @@ const routes = [
             path: 'campaigns',
             components: { content: () => import('@/components/campaigns/Campaigns.vue') },
             name: 'Campaigns'
+          },
+          {
+            path: 'characters',
+            components: { content: () => import('@/components/characters/Characters.vue') },
+            name: 'Characters'
           }
         ]
       }
