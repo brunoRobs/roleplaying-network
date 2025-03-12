@@ -26,7 +26,7 @@
       return {
         target: undefined,
         campaignId: undefined,
-        campaigns: undefined
+        campaigns: []
       }
     },
     computed: {
