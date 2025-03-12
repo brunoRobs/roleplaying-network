@@ -12,6 +12,9 @@
       <Campaign :campaign="campaign" />
     </div>
   </div>
+  <div v-else>
+    {{ 'Nenhuma campanha encontrada '}}
+  </div>
 </template>
 
 <script>
@@ -40,7 +43,7 @@
       }
     },
     beforeMount() {
-      this.campaignId = this.campaigns[0].id;
+      if (this.campaigns.length) this.campaignId = this.campaigns[0].id;
     },
     mounted() {
       const array = Array.from(document.getElementById('list').children)
