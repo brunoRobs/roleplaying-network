@@ -5,7 +5,13 @@
       <img src="" alt="Procurar">
       <input type="search" placeholder="Procurar Campanhas...">
     </search>
-    <ul id="nav"></ul>
+    <ul id="nav">
+      <li>
+        <div class="container">
+          <router-link class="link" :to="{ name: 'Campaigns' }">Campanhas</router-link>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -69,5 +75,39 @@
     padding: 0;
     margin: 0;
     gap: 32px;
+  }
+
+  #nav>li {
+    margin: 8px 0;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent,
+        rgba(255, 255, 255, 0.800),
+        transparent);
+    pointer-events: none;
+  }
+
+  .container:hover:before {
+    animation: shine .65s forwards;
   }
 </style>
