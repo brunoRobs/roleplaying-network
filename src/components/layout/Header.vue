@@ -11,6 +11,11 @@
           <router-link class="link" :to="{ name: 'Campaigns' }">Campanhas</router-link>
         </div>
       </li>
+      <li>
+        <div class="container">
+          <router-link class="link" :to="{ name: 'Characters' }">Personagens</router-link>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
