@@ -8,11 +8,17 @@
         </li>
       </ul>
     </div>
+    <div id="campaign-container">
+      <Campaign :campaign="campaign" />
+    </div>
   </div>
 </template>
 
 <script>
+  import Campaign from './Campaign.vue';
+
   export default {
+    components: { Campaign },
     data() {
       return {
         target: undefined,
@@ -80,5 +86,14 @@
 
   #list li:hover {
     background-color: rgb(230, 121, 102);
+  }
+
+  #campaign-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 83%;
   }
 </style>
