@@ -1,6 +1,6 @@
 <template>
 	<div id="content">
-		<RouterView name="content" />
+		<RouterView name="content" :key="$route.name" />
 	</div>
 </template>
 

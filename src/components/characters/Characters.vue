@@ -1,15 +1,7 @@
 <template>
   <div id="characters" v-if="characters.length">
     <div id="characters-container">
-      <div class="character" v-for="character in characters.map(character => (
-        {
-          cid: character.cid,
-          name: character.sheet.name,
-          class: character.sheet.class,
-          level: character.sheet.level,
-          image: character.sheet.image
-        }
-      ))">
+      <div class="character" v-for="character in characters" :key="character.cid">
         <CharacterPreview :character="character" />
       </div>
     </div>
@@ -21,12 +13,19 @@
 
 <script>
   import CharacterPreview from './CharacterPreview.vue';
+  import json from '../../../test/characters-list.json';
 
   export default {
     components: { CharacterPreview },
     data() {
       return {
-        characters: []
+        characters: json.map(character => ({
+          cid: character.cid,
+          name: character.sheet.name,
+          characterClass: character.sheet.class,
+          level: character.sheet.level,
+          image: character.sheet.image
+        }))
       }
     }
   }
@@ -37,7 +36,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(255, 99, 71);
     width: 100%;
     height: 100%;
   }

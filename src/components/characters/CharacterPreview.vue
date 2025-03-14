@@ -3,7 +3,7 @@
     <img class="image" :src="character.image" alt="Personagem" @click="show">
     <div class="infos" @click="show">
       <p class="name">{{ character.name }}</p>
-      <p class="class-level">{{ `${character.class} ${character.level}` }}</p>
+      <p class="class-level">{{ `${character.characterClass} ${character.level}` }}</p>
     </div>
   </div>
 </template>
@@ -18,10 +18,9 @@
     },
     methods: {
       show() {
-        this.$emit('show', this.character.cid);
+        this.$router.push({ name: 'Character', params: { cid: this.character.cid } });
       }
-    },
-    emits: ['show']
+    }
   }
 </script>
 

@@ -19,7 +19,13 @@ const routes = [
           {
             path: 'characters',
             components: { content: () => import('@/components/characters/Characters.vue') },
-            name: 'Characters'
+            name: 'Characters',
+          },
+          {
+            path: 'characters/:cid',
+            components: { content: () => import('@/components/characters/Character.vue') },
+            name: 'Character',
+            props: true
           }
         ]
       }
