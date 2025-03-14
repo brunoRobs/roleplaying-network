@@ -13,7 +13,7 @@
     </div>
   </div>
   <div v-else>
-    {{ 'Nenhuma campanha encontrada '}}
+    {{ 'Nenhuma campanha encontrada ' }}
   </div>
 </template>
 
@@ -46,8 +46,10 @@
       if (this.campaigns.length) this.campaignId = this.campaigns[0].id;
     },
     mounted() {
-      const array = Array.from(document.getElementById('list').children)
-      this.target = array.find(item => item.classList.contains('selected'));
+      if (this.campaigns.length) {
+        const array = Array.from(document.getElementById('list').children)
+        this.target = array.find(item => item.classList.contains('selected'));
+      }
     }
   }
 </script>
