@@ -13,13 +13,17 @@
         </div>
       </div>
       <div class="side" right>
-
+        <div id="chart"></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import generateChart from '@/plugins/chart';
+
+  generateChart(400, 400, 100, '.side#chart')
+
   export default {
     props: ['cid']
   }
