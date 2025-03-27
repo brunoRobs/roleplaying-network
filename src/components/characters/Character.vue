@@ -1,5 +1,19 @@
 <script setup>
-  const { attributes, image, ...character } = {}
+  const { attributes, image, ...character } = {
+    attributes: {
+      strength: 10,
+      dexterity: 12,
+      constitution: 14,
+      intellingence: 15,
+      wisdom: 16,
+      charisma: 18
+    },
+    image: '',
+    name: 'Phara Dymer',
+    class: 'Warlock',
+    level: 7,
+    race: 'Tiefling',
+  }
 </script>
 
 <template>
@@ -13,19 +27,30 @@
         </div>
       </div>
       <div class="side" right>
-        <div id="chart"></div>
+        <div id="chart-container">
+          <canvas id="chart" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import generateChart from '@/plugins/chart';
-
-  generateChart(400, 400, 100, '.side#chart')
+  import chart from '@/plugins/chart';
 
   export default {
-    props: ['cid']
+    props: ['cid'],
+    mounted() {
+      let attributes = {
+        strength: 10,
+        dexterity: 12,
+        constitution: 14,
+        intellingence: 15,
+        wisdom: 16,
+        charisma: 18
+      };
+      chart(document.getElementById('chart').getContext('2d'), attributes)
+    }
   }
 </script>
 
@@ -55,6 +80,11 @@
     width: 288px;
   }
 
+  .side[right] {
+    width: fit-content;
+    align-items: flex-end;
+  }
+
   #image {
     height: 256px;
     border-radius: 128px;
@@ -66,5 +96,10 @@
 
   .info .title {
     font-size: .75em;
+  }
+
+  canvas {
+    width: 360px !important;
+    height: auto !important;
   }
 </style>

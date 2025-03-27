@@ -1,31 +1,47 @@
-import * as d3 from 'd3';
+import { Chart, RadarController, LineElement, PointElement, RadialLinearScale, Filler, Tooltip } from "chart.js";
 
-function generateChart(width, height, radius, selector) {
-  // Calcula os 6 pontos do hexágono
-  const points = d3.range(6).map(i => {
-    const angle = (Math.PI / 3) * i; // 360° divididos por 6 lados
-    return [
-      Math.cos(angle) * radius,
-      Math.sin(angle) * radius
-    ];
-  });
+Chart.register(RadarController, LineElement, PointElement, RadialLinearScale, Filler, Tooltip);
 
-  const svg = d3.select(selector) // Seleciona a div onde o SVG será inserido
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g") // Adiciona um grupo <g> centralizado no meio do SVG
-    .attr("transform", `translate(${width / 2}, ${height / 2})`);
+const chart = (ctx, attributes) => new Chart(
+  ctx,
+  {
+    type: 'radar',
+    options: {
+      responsive: true,
+      animation: true,
+      scales: {
+        r: {
+          beginAtZero: true,
+          min: 0,
+          max: 20,
+          ticks: {
+            display: false,
+            stepSize: 5
+          },
+          pointLabels: {
+            font: {
+              family: 'Amarante',
+              size: 12
+            }
+          }
+        }
+      }
+    },
+    data: {
+      labels: Object.keys(attributes).map(attribute => attribute[0].toUpperCase() + attribute.substring(1)),
+      datasets: [
+        {
+          data: Object.values(attributes),
+          borderWidth: 1,
+          fill: true,
+          backgroundColor: 'rgba(255, 99, 132, .5)',
+          borderColor: 'rgb(255, 99, 132)',
+          pointBackgroundColor: 'rgb(255, 99, 132)',
+          pointHoverBackgroundColor: 'rgb(255, 255, 255)'
+        }
+      ]
+    }
+  }
+);
 
-  // Converte os pontos em uma string para o atributo "points" do <polygon>
-  const hexagonPath = points.map(d => d.join(",")).join(" ");
-
-  // Adiciona o hexágono ao SVG
-  svg.append("polygon")
-    .attr("points", hexagonPath)
-    .attr("stroke", "black")
-    .attr("stroke-width", 2)
-    .attr("fill", "lightblue"); // Cor de preenchimento do hexágono
-}
-
-export default generateChart
+export default chart
