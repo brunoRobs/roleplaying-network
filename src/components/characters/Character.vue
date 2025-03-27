@@ -22,7 +22,7 @@
       <div class="side" left>
         <img id="image" :src="image" alt="Personagem">
         <div class="info" v-for="(value, key) in character">
-          <p class="title">{{ key }}</p>
+          <p class="title">{{ key[0].toUpperCase() + key.substring(1) }}</p>
           <p class="data">{{ value }}</p>
         </div>
       </div>
