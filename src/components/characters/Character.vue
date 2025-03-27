@@ -30,6 +30,7 @@
         <div id="chart-container">
           <canvas id="chart" />
         </div>
+        <button>Show sheet</button>
       </div>
     </div>
   </div>
