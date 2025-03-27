@@ -26,3 +26,14 @@
 * ::-webkit-scrollbar-thumb:hover {
   background: rgb(150, 150, 150);
 }
+
+button {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(90%);
+}
