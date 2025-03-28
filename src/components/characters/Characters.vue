@@ -13,19 +13,20 @@
 
 <script>
   import CharacterPreview from './CharacterPreview.vue';
-  import json from '../../../test/characters-list.json';
 
   export default {
     components: { CharacterPreview },
     data() {
       return {
-        characters: json.map(character => ({
-          cid: character.cid,
-          name: character.sheet.name,
-          characterClass: character.sheet.class,
-          level: character.sheet.level,
-          image: character.sheet.image
-        }))
+        characters: [
+          {
+            cid: 0,
+            name: 'Phara Dymer',
+            characterClass: 'Warlock',
+            level: 7,
+            image: ''
+          }
+        ]
       }
     }
   }
