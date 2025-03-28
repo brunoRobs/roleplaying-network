@@ -26,7 +26,73 @@
       return {
         target: undefined,
         campaignId: undefined,
-        campaigns: []
+        campaigns: [
+          {
+            id: 0,
+            name: "Aetheria",
+            cover: "...",
+            lore: "...",
+            dm: "Otávio",
+            players: [
+              {
+                name: "Bruno",
+                character: "Phara Dymer"
+              },
+              {
+                name: "Isis",
+                character: "Oriana Sardorthien"
+              },
+              {
+                name: "Artur",
+                character: "Kyoshi"
+              },
+              {
+                name: "Lucas",
+                character: "Dekarios Majestic"
+              },
+              {
+                name: "Ygor",
+                character: "Klaus Frostwalker"
+              },
+              {
+                name: "Pedro",
+                character: "Randalf"
+              },
+              {
+                name: "Leo",
+                character: "Ludwig Von Benhardt"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              },
+              {
+                name: "Caio",
+                character: "Dvarg, o Traidor"
+              }
+            ]
+          }
+        ]
       }
     },
     computed: {
@@ -57,13 +123,12 @@
 <style scoped>
   #campaigns {
     display: flex;
-    background: rgb(255, 99, 71);
     width: 100%;
     height: 100%;
   }
 
   #list-container {
-    background: rgb(180, 71, 52);
+    background: rgb(78, 78, 78);
     width: 17%;
     height: 100%;
     overflow-y: auto;
@@ -86,11 +151,11 @@
   }
 
   #list li.selected {
-    background-color: rgb(230, 121, 102);
+    background-color: rgb(222, 222, 222);
   }
 
   #list li:hover {
-    background-color: rgb(230, 121, 102);
+    background-color: rgb(222, 222, 222);
   }
 
   #campaign-container {
