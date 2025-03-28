@@ -1,21 +1,3 @@
-<script setup>
-  const { attributes, image, ...character } = {
-    attributes: {
-      strength: 10,
-      dexterity: 12,
-      constitution: 14,
-      intellingence: 15,
-      wisdom: 16,
-      charisma: 18
-    },
-    image: '',
-    name: 'Phara Dymer',
-    class: 'Warlock',
-    level: 7,
-    race: 'Tiefling',
-  }
-</script>
-
 <template>
   <div id="character">
     <div id="character-container">
@@ -30,7 +12,10 @@
         <div id="chart-container">
           <canvas id="chart" />
         </div>
-        <button>Show sheet</button>
+        <div id="buttons">
+          <button @click="showSheet">Show sheet</button>
+          <button @click="downloadSheet">Download sheet</button>
+        </div>
       </div>
     </div>
   </div>
@@ -38,19 +23,63 @@
 
 <script>
   import chart from '@/plugins/chart';
+  import api from '@/plugins/axios';
 
   export default {
     props: ['cid'],
-    mounted() {
-      let attributes = {
-        strength: 10,
-        dexterity: 12,
-        constitution: 14,
-        intellingence: 15,
-        wisdom: 16,
-        charisma: 18
+    data() {
+      return {
+        attributes: undefined,
+        image: undefined,
+        character: undefined
+      }
+    },
+    methods: {
+      async showSheet() {
+        const name = this.character.name.split(' ')
+          .map(word => word[0].toLowerCase() + word.substring(1))
+          .join('_');
+        const response = await api.get(`/sheets/show/${name}`, { responseType: 'blob' });
+        const url = URL.createObjectURL(response.data)
+        window.open(url, '_blank');
+      },
+      async downloadSheet() {
+        const name = this.character.name.split(' ')
+          .map(word => word[0].toLowerCase() + word.substring(1))
+          .join('_');
+        const response = await api.get(`/sheets/download/${name}`, { responseType: 'blob' });
+        const url = URL.createObjectURL(response.data);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${name}.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }
+    },
+    beforeMount() {
+      const { attributes, image, ...character } = {
+        attributes: {
+          strength: 10,
+          dexterity: 12,
+          constitution: 14,
+          intellingence: 15,
+          wisdom: 16,
+          charisma: 18
+        },
+        image: '',
+        name: 'Phara Dymer',
+        class: 'Warlock',
+        level: 7,
+        race: 'Tiefling',
       };
-      chart(document.getElementById('chart').getContext('2d'), attributes)
+      this.attributes = attributes;
+      this.image = image;
+      this.character = character;
+    },
+    mounted() {
+      chart(document.getElementById('chart').getContext('2d'), this.attributes)
     }
   }
 </script>
@@ -102,5 +131,10 @@
   canvas {
     width: 360px !important;
     height: auto !important;
+  }
+
+  #buttons {
+    display: flex;
+    gap: 12px;
   }
 </style>
