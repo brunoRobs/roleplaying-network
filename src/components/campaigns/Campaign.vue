@@ -46,7 +46,7 @@
     justify-content: space-evenly;
     align-items: center;
 
-    background: rgb(180, 71, 52);
+    background: rgb(78, 78, 78);
     border-radius: 8px;
     height: 90%;
     width: 90%;
